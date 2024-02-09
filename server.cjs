@@ -51,7 +51,7 @@ connectToDb(function(error) {
 
 
 app.post('/add-entry', function(request, response) {
-    db.collection('ExpensesData').insertOne(request.body).then(function() {
+    db.collection('CAR RENT').insertOne(request.body).then(function() {
         response.status(201).json({
             "status" : "Entry added successfully"
         })
@@ -69,7 +69,7 @@ app.post('/add-entry', function(request, response) {
 
 app.get('/get-entries', function(request, response) {
     const entries = []
-    db.collection('ExpensesData')
+    db.collection('CAR RENT')
     .find()
     .forEach(entry => entries.push(entry))
     .then(function() {
@@ -88,7 +88,7 @@ app.get('/get-entries', function(request, response) {
 
 app.delete('/delete-entry/:id ', function(request, response) {
     if(ObjectId.isValid(request.query.id)) {
-        db.collection('ExpensesData').deleteOne({
+        db.collection('CAR RENT').deleteOne({
             _id : new ObjectId(request.query.id)
         }).then(function() {
             response.status(200).json({
@@ -112,7 +112,7 @@ app.delete('/delete-entry/:id ', function(request, response) {
 
 app.patch('/update-entry/:id', function(request, response) {
     if(ObjectId.isValid(request.params.id)) {
-        db.collection('ExpensesData').updateOne(
+        db.collection('CAR RENT').updateOne(
             { _id : new ObjectId(request.params.id) },
             { $set : request.body } 
         ).then(function() {
